@@ -100,9 +100,9 @@
             document.getElementById("loadingScreen").src = " ";
             document.getElementById("loadingScreen").style.display = "none";
             dataList = await result.json();
-            if(dataList == [])
+            if(dataList.length <= 0)
             {
-                document.querySelector(".result").innerHTML = "Nothing Found!";
+                document.querySelector(".result").innerHTML = "<h1>Nothing Found!</h1>";
             }
             else
             {

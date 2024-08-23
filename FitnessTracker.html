@@ -97,16 +97,23 @@
             {
                 result = await fetch(`https://api.api-ninjas.com/v1/exercises?difficulty=${input}&X-Api-Key=OaLU5KasRvkoY4GezX55Fg==t1ZTSAXy0r1yau05`);
             }
-            dataList = await result.json();
             document.getElementById("loadingScreen").src = " ";
             document.getElementById("loadingScreen").style.display = "none";
-            const data1 = dataList.slice(0,dataList.length/2);
-            const data2 = dataList.slice(5,dataList.length);
-            const dataObject = {
-                data1 : data1,
-                data2 : data2,
+            dataList = await result.json();
+            if(dataList == [])
+            {
+                document.querySelector(".result").innerHTML = "Nothing Found!";
             }
-            document.querySelector(".result").innerHTML = template(dataObject);
+            else
+            {
+                const data1 = dataList.slice(0,dataList.length/2);
+                const data2 = dataList.slice(5,dataList.length);
+                const dataObject = {
+                    data1 : data1,
+                    data2 : data2,
+                }
+                document.querySelector(".result").innerHTML = template(dataObject);
+            }
         } catch(error) {
             alert(error);
         }
